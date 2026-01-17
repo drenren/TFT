@@ -14,6 +14,7 @@ from tqdm import tqdm
 from .losses import QuantileLoss
 from .metrics import MetricsCalculator
 from .callbacks import CallbackList, Callback
+from ..utils.device import get_device
 
 
 class TFTTrainer:
@@ -43,8 +44,11 @@ class TFTTrainer:
 
         # Setup device
         if device is None:
-            device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.device = torch.device(device)
+            self.device = get_device("auto")
+        elif isinstance(device, str):
+            self.device = get_device(device)
+        else:
+            self.device = device
         self.model.to(self.device)
 
         # Setup optimizer

@@ -52,6 +52,36 @@ pip install -e .
 
 See `requirements.txt` for complete dependencies.
 
+### Hardware Acceleration
+
+TFT automatically detects and uses the best available device:
+
+- **CUDA (NVIDIA GPUs)**: Automatically used if available for fastest training
+- **MPS (Apple Silicon)**: Automatically used on M1/M2/M3 Macs for GPU acceleration
+- **CPU**: Fallback option, works on all systems
+
+To check available devices:
+```python
+from tft.utils import print_device_info
+print_device_info()
+```
+
+Or test device detection:
+```bash
+python examples/test_device.py
+```
+
+The device is automatically selected when creating a trainer:
+```python
+# Automatic device selection (recommended)
+trainer = TFTTrainer(model, config)  # Uses best available device
+
+# Manual device selection
+trainer = TFTTrainer(model, config, device="cuda")  # Force CUDA
+trainer = TFTTrainer(model, config, device="mps")   # Force MPS
+trainer = TFTTrainer(model, config, device="cpu")   # Force CPU
+```
+
 ## Quick Start
 
 ```python

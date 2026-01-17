@@ -18,7 +18,7 @@ import torch
 from tft.models import TemporalFusionTransformer
 from tft.data import create_dataloaders
 from tft.training import TFTTrainer, EarlyStopping, ModelCheckpoint
-from tft.utils import TFTConfig
+from tft.utils import TFTConfig, get_device, print_device_info
 from tft.utils.visualization import plot_predictions, plot_training_history
 
 
@@ -197,8 +197,9 @@ def main():
 
     # 5. Create model
     print("\n5. Creating TFT model...")
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    print(f"   Using device: {device}")
+    # Show available devices
+    print_device_info()
+    device = get_device("auto")
 
     model = TemporalFusionTransformer(config)
     num_params = sum(p.numel() for p in model.parameters())

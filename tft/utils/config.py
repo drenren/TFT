@@ -84,7 +84,7 @@ class TFTConfig:
     lr_scheduler_factor: float = 0.5
 
     # Device
-    device: str = "cuda"  # "cuda" or "cpu"
+    device: str = "auto"  # "auto", "cuda", "mps", or "cpu"
 
     @property
     def num_static_variables(self) -> int:

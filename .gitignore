@@ -51,9 +51,9 @@ wandb/
 *.pt
 *.ckpt
 
-# Data
-data/
-datasets/
+# Data (root level only, not tft/data/)
+/data/
+/datasets/
 *.csv
 *.h5
 *.hdf5

@@ -74,3 +74,4 @@ htmlcov/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+examples/data/LD2011_2014.txt
